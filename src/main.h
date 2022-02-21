@@ -7,3 +7,4 @@
 #include "engine/init.h"
 #include "engine/windowmanager.h"
 #include "engine/render.h"
+#include "game/gamemain.h"

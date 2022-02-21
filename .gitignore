@@ -1,5 +1,4 @@
 *.o
 *.swp
 vimproj.sh
-bin
 YAE

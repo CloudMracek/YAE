@@ -2,6 +2,8 @@
 
 void engineLoop(GLFWwindow* window) {
 
+	gameTick();
+
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);

@@ -7,7 +7,8 @@ int main ( void ) {
 	if(glewInit() != GLEW_OK) {
 		return -1;
 	}
-
+	
+	gameSetup();
 	engineLoop(mainWindow);
 
 	glfwTerminate();
