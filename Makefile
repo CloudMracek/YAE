@@ -1,11 +1,11 @@
 # project name (generate executable with this name)
 TARGET   = YAE
 
-CC       = g++
+CC       = clang++
 # compiling flags here
 LDFLAGS = -lm -lGL -L/usr/X11R6/lib -lGLU -lglut -lGLEW -lXi -lXmu -lglfw
 
-LINKER   = g++
+LINKER   = clang++
 # linking flags here
 
 # change these to proper directories where each file should be
