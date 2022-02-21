@@ -13,18 +13,21 @@ SRCDIR   = src
 OBJDIR   = obj
 BINDIR   = bin
 
-SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
-INCLUDES := $(wildcard $(SRCDIR)/*.h)
+SOURCES  := $(wildcard $(SRCDIR)/**/*.cpp) $(wildcard $(SRCDIR)/*.cpp)
+INCLUDES := $(wildcard $(SRCDIR)*/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 rm       = rm -f
 
-
 $(BINDIR)/$(TARGET): $(OBJECTS)
+	
+	@echo $(SOURCES)
 	@$(LINKER) $(OBJECTS) $(LDFLAGS) -o $@
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	@$(CC) $(LDFLAGS) -c $< -o $@
+	
+	@echo $(SOURCES)
+	@$(CC) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean
