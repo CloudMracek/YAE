@@ -5,3 +5,5 @@
 #include <GLFW/glfw3.h>
 
 #include "engine/init.h"
+#include "engine/windowmanager.h"
+#include "engine/render.h"

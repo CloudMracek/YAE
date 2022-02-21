@@ -19,14 +19,10 @@ OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 rm       = rm -f
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-	
-	@echo $(SOURCES)
 	@$(LINKER) $(OBJECTS) $(LDFLAGS) -o $@
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	
-	@echo $(SOURCES)
 	@$(CC) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
