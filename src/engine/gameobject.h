@@ -14,7 +14,7 @@ class GameObject {
 		glm::vec3 getPosition();
 		void setPosition(glm::vec3 position);
 
-		std::vector<Component> getComponents();
+		std::vector<std::reference_wrapper<Component>> getComponents();
 		Component getComponent(uint id);
 		void addComponent(Component& component);
 		void removeComponent(uint componentID);

@@ -16,6 +16,17 @@ void gameSetup() {
 
 	mesh1 = Mesh();
 	mesh1.setVertexBuffer(vertexBuffer, 3);
+
+	MeshComponent component = MeshComponent(mesh1);
+
+	GameObject object = GameObject(glm::vec3(0.0f, 0.0f, 0.0f));
+	object.addComponent(component);
+
+
+	Scene scene1 = Scene("Test scene");
+	scene1.addObject(object);
+
+	loadScene(scene1);
 }
 
 void gameTick() {

@@ -1,4 +1,7 @@
 #pragma once
+
+#include <GL/glew.h>
+
 #include "../component.h"
 #include "../mesh.h"
 

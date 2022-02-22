@@ -10,4 +10,6 @@ void GameObject::addComponent(Component& component) {
 	_components.push_back(std::reference_wrapper<Component>{component});
 }
 
-
+std::vector<std::reference_wrapper<Component>> GameObject::getComponents() {
+	return _components;
+}

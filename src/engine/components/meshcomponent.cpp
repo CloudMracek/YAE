@@ -1,10 +1,10 @@
 #include "meshcomponent.h"
 
-void MeshComponent::MeshComponent(Mesh mesh) {
+MeshComponent::MeshComponent(Mesh mesh)  {
 	_mesh = mesh;
 }
 
-void MeshComponent::execute() override {
+void MeshComponent::execute() {
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, _mesh.getVertexBuffer());
 	glVertexAttribPointer(

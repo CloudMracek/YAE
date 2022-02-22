@@ -2,5 +2,5 @@
 
 class Component {
 	public:
-		virtual void execute();
+		virtual void execute() {};
 };

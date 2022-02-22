@@ -3,5 +3,10 @@
 #include <GLFW/glfw3.h>
 
 #include "../game/gamemain.h"
+#include "scene.h"
+#include "component.h"
+
+extern Scene activeScene;
 
 void engineLoop(GLFWwindow* window); 
+void loadScene(Scene& scene);
