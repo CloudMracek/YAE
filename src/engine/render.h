@@ -4,7 +4,7 @@
 
 #include "../game/gamemain.h"
 #include "scene.h"
-#include "component.h"
+#include "shaderloader.h"
 
 extern Scene activeScene;
 

@@ -5,7 +5,7 @@
 
 #include <glm/glm.hpp>
 
-#include "component.h"
+#include "mesh.h"
 
 class GameObject {
 	public:
@@ -13,14 +13,12 @@ class GameObject {
 		
 		glm::vec3 getPosition();
 		void setPosition(glm::vec3 position);
-
-		std::vector<std::reference_wrapper<Component>> getComponents();
-		Component getComponent(uint id);
-		void addComponent(Component& component);
-		void removeComponent(uint componentID);
+		Mesh getMesh();
+		void setMesh(Mesh mesh);
+		void render();
 	
 	private:
 		glm::vec3 _position;
-		std::vector<std::reference_wrapper<Component>> _components;
+		Mesh _mesh;
 
-};
+};;

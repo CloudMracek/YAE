@@ -4,21 +4,19 @@ Scene activeScene = NULL;
 
 void engineLoop(GLFWwindow* window) {
 
-	gameTick();
+	GLuint programID = LoadShaders("shaders/vertexshader.glsl", "shaders/fragmentshader.glsl");
 
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
-
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	do {
-		glClear( GL_COLOR_BUFFER_BIT );
-
+		gameTick();
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		glUseProgram(programID);
 		for(GameObject object : activeScene.getGameObjects()) {
-			for(Component component : object.getComponents()) {
-				component.execute();
-			}
+			object.render();
 		}
 
     		glfwSwapBuffers(window);
