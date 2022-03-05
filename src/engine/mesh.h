@@ -7,9 +7,8 @@ class Mesh {
 	public:
 		void setVertexBuffer(GLuint vertexBuffer, GLuint vertexCount);
 		GLuint getVertexBuffer();
-		GLuint getVertexCount();
+		GLuint vertexCount;
 	private:
 		GLuint _vertexBuffer;
-		GLuint _vertexCount;
 };
 

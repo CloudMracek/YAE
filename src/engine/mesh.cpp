@@ -1,15 +1,12 @@
 #include "mesh.h"
 
-void Mesh::setVertexBuffer(GLuint vertexBuffer, GLuint vertexCount) {
+void Mesh::setVertexBuffer(GLuint vertexBuffer, GLuint vxCount) {
 	_vertexBuffer = vertexBuffer;
-	_vertexCount = vertexCount;
+	vertexCount = vxCount;
 }
 
 GLuint Mesh::getVertexBuffer() {
 	return _vertexBuffer;
 }
 
-GLuint Mesh::getVertexCount() {
-	return _vertexCount;
-}
 

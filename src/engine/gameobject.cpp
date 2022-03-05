@@ -24,7 +24,7 @@ void GameObject::render() {
    	(void*)0            // array buffer offset
 	);
 	
-	glDrawArrays(GL_TRIANGLES, 0, _mesh.getVertexCount()); 
+	glDrawArrays(GL_TRIANGLES, 0, _mesh.vertexCount); 
 	glDisableVertexAttribArray(0);
 }
 
