@@ -125,8 +125,11 @@ void gameSetup() {
 
 void gameCleanup() {
     delete object;
+	delete object2;
     delete mesh1;
+	delete mesh2;
 	delete texture;
+	delete texture2;
 }
 
 void gameTick() {

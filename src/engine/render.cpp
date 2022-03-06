@@ -20,6 +20,8 @@ void engineLoop(GLFWwindow *window)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 
+	glEnable(GL_CULL_FACE);
+
 	int width, height;
 
 	do
@@ -27,11 +29,9 @@ void engineLoop(GLFWwindow *window)
 		gameTick();
 		glfwGetWindowSize(window, &width, &height);
 
-		glm::mat4 Projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-		glm::mat4 View = glm::lookAt(
-			glm::vec3(6, 3, 3),
-			glm::vec3(0, 0, 0),
-			glm::vec3(0, 1, 0));
+		computeMatricesFromInputs(window);
+		glm::mat4 Projection = glm::perspective(glm::radians(60.0f), (float)width / (float)height, 0.1f, 100.0f);
+		glm::mat4 View = getViewMatrix();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -42,7 +42,6 @@ void engineLoop(GLFWwindow *window)
 		for (GameObject *object : activeScene.getGameObjects())
 		{
 			glm::mat4 translate = glm::translate(glm::mat4(1.0f), object->getPosition());
-
 			glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[0], glm::vec3(1.0f,0.0f,0.0f));
 			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[1], glm::vec3(0.0f,1.0f,0.0f)) * rotate;
 			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[2], glm::vec3(0.0f,0.0f,1.0f)) * rotate;

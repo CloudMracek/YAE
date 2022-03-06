@@ -7,6 +7,7 @@
 #include "../game/gamemain.h"
 #include "scene.h"
 #include "shaderloader.h"
+#include "controls.h"
 
 extern Scene activeScene;
 
