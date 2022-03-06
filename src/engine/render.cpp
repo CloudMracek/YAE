@@ -26,7 +26,7 @@ void engineLoop(GLFWwindow *window)
 		gameTick();
 		glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 		glm::mat4 View = glm::lookAt(
-			glm::vec3(4, 3, 3),
+			glm::vec3(6, 3, 3),
 			glm::vec3(0, 0, 0),
 			glm::vec3(0, 1, 0));
 
@@ -39,9 +39,13 @@ void engineLoop(GLFWwindow *window)
 		for (GameObject *object : activeScene.getGameObjects())
 		{
 			glm::mat4 translate = glm::translate(glm::mat4(1.0f), object->getPosition());
-			//glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), 90.0f, object->getRotation());
+
+			glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[0], glm::vec3(1.0f,0.0f,0.0f));
+			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[1], glm::vec3(0.0f,1.0f,0.0f)) * rotate;
+			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[2], glm::vec3(0.0f,0.0f,1.0f)) * rotate;
+			
 			glm::mat4 scale = glm::scale(glm::mat4(1.0f), object->getScale());
-			glm::mat4 Model = translate * scale;
+			glm::mat4 Model = translate * scale * rotate;
 			glm::mat4 MVP = Projection * View * Model;
 			glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
@@ -60,6 +64,8 @@ void engineLoop(GLFWwindow *window)
 	for (GameObject *object : activeScene.getGameObjects())
 	{
 		GLuint vertexBuffer = object->getMesh()->getVertexBuffer();
+		GLuint uvBuffer = object->getMesh()->getUvBuffer();
+		glDeleteBuffers(1, &uvBuffer);
 		glDeleteBuffers(1, &vertexBuffer);
 	}
 	glDeleteProgram(programID);

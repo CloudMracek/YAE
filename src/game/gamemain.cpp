@@ -83,6 +83,8 @@ Mesh* mesh1;
 GameObject* object;
 Texture* texture;
 
+float i = 0;
+
 void gameSetup() {
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
@@ -114,5 +116,7 @@ void gameCleanup() {
 }
 
 void gameTick() {
-
+	object->setPosition(glm::vec3(0.0f, sin(i), 0.0f));
+	object->setRotation(glm::vec3(i, i, 0.0f));
+	i = i + 0.01f;
 }
