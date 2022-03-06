@@ -185,7 +185,7 @@ GLuint loadDDS(const char * imagepath){
 
 }
 
-Texture::Texture(char* texturePath) {
+Texture::Texture(const char* texturePath) {
     std::string path = texturePath;
     if(path.substr(path.find_last_of(".") + 1) == "bmp") {
         _textureID = loadBMP_custom(texturePath);

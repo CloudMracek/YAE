@@ -10,7 +10,7 @@
 
 class Texture {
     public:
-        Texture(char* texturePath);
+        Texture(const char* texturePath);
         GLuint getTextureID();
     private:
         GLuint _textureID;
