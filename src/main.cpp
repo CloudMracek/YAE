@@ -10,6 +10,7 @@ int main ( void ) {
 	gameSetup();
 	engineLoop(mainWindow);
 
+	gameCleanup();
 	glfwTerminate();
 	return 0;
 }

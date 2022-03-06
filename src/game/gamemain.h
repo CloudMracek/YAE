@@ -1,5 +1,7 @@
 #pragma once
+
 #include <GL/glew.h>
+
 #include "../engine/mesh.h"
 #include "../engine/gameobject.h"
 #include "../engine/scene.h"
@@ -7,3 +9,4 @@
 
 void gameSetup();
 void gameTick();
+void gameCleanup();

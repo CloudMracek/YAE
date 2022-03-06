@@ -41,6 +41,7 @@ static const GLfloat g_vertex_buffer_data[] = {
 
 GLuint vertexBuffer;
 Mesh* mesh1;
+GameObject* object;
 
 void gameSetup() {
 	glGenBuffers(1, &vertexBuffer);
@@ -51,13 +52,18 @@ void gameSetup() {
 	mesh1->setVertexBuffer(vertexBuffer, 12*3);
 
 
-	GameObject* object =  new GameObject(glm::vec3(0.0f, 0.0f, 0.0f));
+	object =  new GameObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	object->setMesh(mesh1);
 
 	Scene scene1 = Scene("Test scene");
 	scene1.addObject(object);
 
 	loadScene(scene1);
+}
+
+void gameCleanup() {
+    delete object;
+    delete mesh1;
 }
 
 void gameTick() {
