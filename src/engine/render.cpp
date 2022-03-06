@@ -40,8 +40,8 @@ void engineLoop(GLFWwindow *window)
 		{
 			glm::mat4 translate = glm::translate(glm::mat4(1.0f), object->getPosition());
 			//glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), 90.0f, object->getRotation());
-			//glm::mat4 scale = glm::scale(glm::mat4(1.0f), object->getScale());
-			glm::mat4 Model = translate;
+			glm::mat4 scale = glm::scale(glm::mat4(1.0f), object->getScale());
+			glm::mat4 Model = translate * scale;
 			glm::mat4 MVP = Projection * View * Model;
 			glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 

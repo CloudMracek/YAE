@@ -34,11 +34,11 @@ glm::vec3 GameObject::getPosition() {
 }
 
 glm::vec3 GameObject::getRotation() {
-	return _position;
+	return _rotation;
 }
 
 glm::vec3 GameObject::getScale() {
-	return _position;
+	return _scale;
 }
 
 void GameObject::render()
