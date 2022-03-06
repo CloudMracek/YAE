@@ -3,6 +3,8 @@
 GameObject::GameObject(glm::vec3 position)
 {
 	_position = position;
+	_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+	_scale = glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
 void GameObject::setMesh(Mesh *mesh)
@@ -13,6 +15,30 @@ void GameObject::setMesh(Mesh *mesh)
 Mesh *GameObject::getMesh()
 {
 	return _mesh;
+}
+
+void GameObject::setPosition(glm::vec3 position) {
+	_position = position;
+}
+
+void GameObject::setRotation(glm::vec3 rotation) {
+	_rotation = rotation;
+}
+
+void GameObject::setScale(glm::vec3 scale) {
+	_scale = scale;
+}
+
+glm::vec3 GameObject::getPosition() {
+	return _position;
+}
+
+glm::vec3 GameObject::getRotation() {
+	return _position;
+}
+
+glm::vec3 GameObject::getScale() {
+	return _position;
 }
 
 void GameObject::render()

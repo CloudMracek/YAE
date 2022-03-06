@@ -17,29 +17,34 @@ void engineLoop(GLFWwindow *window)
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 	GLuint TextureID = glGetUniformLocation(programID, "textureSampler");
 
-	glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-	// glm::mat4 Projection = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates
-
-	glm::mat4 View = glm::lookAt(
-		glm::vec3(4, 3, 3),
-		glm::vec3(0, 0, 0),
-		glm::vec3(0, 1, 0));
-
-	glm::mat4 Model = glm::mat4(1.0f);
-
-	glm::mat4 MVP = Projection * View * Model;
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS); 
 
 	do
 	{
+
+		gameTick();
+		glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+		glm::mat4 View = glm::lookAt(
+			glm::vec3(4, 3, 3),
+			glm::vec3(0, 0, 0),
+			glm::vec3(0, 1, 0));
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glUseProgram(programID);
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
 		glActiveTexture(GL_TEXTURE0);
 
 		for (GameObject *object : activeScene.getGameObjects())
 		{
+			glm::mat4 translate = glm::translate(glm::mat4(1.0f), object->getPosition());
+			//glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), 90.0f, object->getRotation());
+			//glm::mat4 scale = glm::scale(glm::mat4(1.0f), object->getScale());
+			glm::mat4 Model = translate;
+			glm::mat4 MVP = Projection * View * Model;
+			glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
 			GLuint texture = object->getMesh()->getTexture()->getTextureID();
 			glBindTexture(GL_TEXTURE_2D, texture);
 			glUniform1i(TextureID, 0);

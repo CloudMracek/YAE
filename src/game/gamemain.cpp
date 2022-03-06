@@ -96,7 +96,7 @@ void gameSetup() {
 	mesh1 = new Mesh();
 	mesh1->setVertexBuffer(vertexBuffer, 12*3, uvbuffer);
 
-    texture = new Texture("textures/uvtemplate.DDS");
+    texture = new Texture("textures/uvtemplate.bmp");
     mesh1->setTexture(texture);
 
 	object =  new GameObject(glm::vec3(0.0f, 0.0f, 0.0f));
