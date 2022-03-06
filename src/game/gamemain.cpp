@@ -80,8 +80,11 @@ static const GLfloat g_uv_buffer_data[] = {
 
 GLuint vertexBuffer;
 Mesh* mesh1;
+Mesh* mesh2;
 GameObject* object;
+GameObject* object2;
 Texture* texture;
+Texture* texture2;
 
 float i = 0;
 
@@ -98,14 +101,24 @@ void gameSetup() {
 	mesh1 = new Mesh();
 	mesh1->setVertexBuffer(vertexBuffer, 12*3, uvbuffer);
 
+	mesh2 = new Mesh();
+	mesh2->setVertexBuffer(vertexBuffer, 12*3, uvbuffer);
+
     texture = new Texture("textures/uvtemplate.bmp");
     mesh1->setTexture(texture);
 
 	object =  new GameObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	object->setMesh(mesh1);
 
+    texture2 = new Texture("textures/uvtemplate.DDS");
+    mesh2->setTexture(texture2);
+
+	object2 =  new GameObject(glm::vec3(0.0f, 0.0f, -5.0f));
+	object2->setMesh(mesh2);
+
 	Scene scene1 = Scene("Test scene");
 	scene1.addObject(object);
+	scene1.addObject(object2);
 
 	loadScene(scene1);
 }
@@ -113,6 +126,7 @@ void gameSetup() {
 void gameCleanup() {
     delete object;
     delete mesh1;
+	delete texture;
 }
 
 void gameTick() {
