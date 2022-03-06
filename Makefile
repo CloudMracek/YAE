@@ -23,7 +23,7 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	@$(CC) -c $< -o $@
+	@$(CC) -c $< -g -o $@
 	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean

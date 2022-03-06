@@ -13,12 +13,12 @@ class GameObject {
 		
 		glm::vec3 getPosition();
 		void setPosition(glm::vec3 position);
-		Mesh getMesh();
-		void setMesh(Mesh mesh);
+		Mesh* getMesh();
+		void setMesh(Mesh* mesh);
 		void render();
 	
 	private:
 		glm::vec3 _position;
-		Mesh _mesh;
+		Mesh* _mesh;
 
 };;

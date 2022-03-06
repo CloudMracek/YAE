@@ -9,8 +9,9 @@ class Scene {
 	public:
 		Scene(const char* sceneName);
 
-		void addObject(GameObject& object);
-		std::vector<std::reference_wrapper<GameObject>> getGameObjects();
+		void addObject(GameObject* object);
+		std::vector<GameObject*> getGameObjects();
+		GameObject* getGameObject(int i);
 	private:
-		std::vector<std::reference_wrapper<GameObject>> _gameObjects;
+		std::vector<GameObject*> _gameObjects;
 };

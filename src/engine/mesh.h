@@ -5,10 +5,12 @@
 
 class Mesh {
 	public:
-		void setVertexBuffer(GLuint vertexBuffer, GLuint vertexCount);
+		void setVertexBuffer(GLuint vertexBuffer, const GLuint vxCount);
 		GLuint getVertexBuffer();
-		GLuint vertexCount;
+		GLuint getVertexCount();
+		
 	private:
+		GLuint _vertexCount;
 		GLuint _vertexBuffer;
 };
 
