@@ -20,11 +20,14 @@ void engineLoop(GLFWwindow *window)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS); 
 
+	int width, height;
+
 	do
 	{
-
 		gameTick();
-		glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+		glfwGetWindowSize(window, &width, &height);
+
+		glm::mat4 Projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
 		glm::mat4 View = glm::lookAt(
 			glm::vec3(6, 3, 3),
 			glm::vec3(0, 0, 0),
