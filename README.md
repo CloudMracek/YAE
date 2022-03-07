@@ -1,4 +1,4 @@
-![Logo](https://github.com/CloudMracek/YAE/blob/main/logo.png?raw=true)
+![Logo](https://github.com/CloudMracek/YAE/blob/main/logo_white.png?raw=true)
 
 ## The basics
 
