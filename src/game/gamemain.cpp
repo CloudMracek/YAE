@@ -11,7 +11,7 @@ void gameSetup() {
 
 	mesh1 = new Mesh("models/cube.obj");
 
-    texture = new Texture("textures/uvtemplate.bmp");
+    texture = new Texture("textures/cube.bmp");
     mesh1->setTexture(texture);
 
 	object =  new GameObject(glm::vec3(0.0f, 0.0f, 0.0f));

@@ -22,6 +22,8 @@ void engineLoop(GLFWwindow *window)
 
 	glEnable(GL_CULL_FACE);
 
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
 	int width, height;
 
 	do
