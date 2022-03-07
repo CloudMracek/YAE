@@ -36,8 +36,6 @@ void computeMatricesFromInputs(GLFWwindow *window)
     horizontalAngle += mouseSpeed * float(width / 2 - xpos);
     verticalAngle += mouseSpeed * float(height / 2 - ypos);
 
-    std::cout << horizontalAngle << "\n";
-
     if(verticalAngle > 1) {verticalAngle = 1;}
     if(verticalAngle < -1) {verticalAngle = -1;}
 
