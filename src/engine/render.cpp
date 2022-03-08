@@ -15,10 +15,13 @@ void engineLoop(GLFWwindow *window)
 
 	GLuint programID = LoadShaders("shaders/vertexshader.glsl", "shaders/fragmentshader.glsl");
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+	GLuint ViewMatrixID = glGetUniformLocation(programID, "V");
+	GLuint ModelMatrixID = glGetUniformLocation(programID, "M");
 	GLuint TextureID = glGetUniformLocation(programID, "textureSampler");
+	GLuint LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS); 
+	glDepthFunc(GL_LESS);
 
 	glEnable(GL_CULL_FACE);
 
@@ -38,20 +41,25 @@ void engineLoop(GLFWwindow *window)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glUseProgram(programID);
+		glm::vec3 lightPos = glm::vec3(4, 4, 4);
+		glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
+		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &View[0][0]);
 
 		glActiveTexture(GL_TEXTURE0);
 
 		for (GameObject *object : activeScene.getGameObjects())
 		{
 			glm::mat4 translate = glm::translate(glm::mat4(1.0f), object->getPosition());
-			glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[0], glm::vec3(1.0f,0.0f,0.0f));
-			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[1], glm::vec3(0.0f,1.0f,0.0f)) * rotate;
-			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[2], glm::vec3(0.0f,0.0f,1.0f)) * rotate;
-			
+			glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[0], glm::vec3(1.0f, 0.0f, 0.0f));
+			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[1], glm::vec3(0.0f, 1.0f, 0.0f)) * rotate;
+			rotate = glm::rotate(glm::mat4(1.0f), object->getRotation()[2], glm::vec3(0.0f, 0.0f, 1.0f)) * rotate;
+
 			glm::mat4 scale = glm::scale(glm::mat4(1.0f), object->getScale());
 			glm::mat4 Model = translate * scale * rotate;
 			glm::mat4 MVP = Projection * View * Model;
+
 			glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+			glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &Model[0][0]);
 
 			GLuint texture = object->getMesh()->getTexture()->getTextureID();
 			glBindTexture(GL_TEXTURE_2D, texture);
