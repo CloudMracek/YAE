@@ -2,13 +2,14 @@
 
 ## The basics
 
-This engine is **not yet finished.** There is no lighting, there are no normal maps, there is no sound, there is no controller support. The list just goes on... The engine currently supports these features:
+This engine is **not yet finished.** There are no normal maps, there is no sound, there is no controller support. The list just goes on... The engine currently supports these features:
 
 - Create objects and manage them in scenes
 - Load meshes from *.obj* files
 - Load textures from either *.bmp* or *.DDS* files
 - Manage the position, scale and rotation on those objects
 - Draw those objects (duh)
+- Does basic shading with one static unmovable light
 - Not cause memory leaks (hopefully)
 
 ## Building
