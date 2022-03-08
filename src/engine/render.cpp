@@ -69,8 +69,10 @@ void engineLoop(GLFWwindow *window)
 	{
 		GLuint vertexBuffer = object->getMesh()->getVertexBuffer();
 		GLuint uvBuffer = object->getMesh()->getUvBuffer();
+		GLuint normalBuffer = object->getMesh()->getNormalBuffer();
 		glDeleteBuffers(1, &uvBuffer);
 		glDeleteBuffers(1, &vertexBuffer);
+		glDeleteBuffers(1, &normalBuffer);
 	}
 	glDeleteProgram(programID);
 	glDeleteVertexArrays(1, &VertexArrayID);

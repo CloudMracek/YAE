@@ -16,6 +16,7 @@ class Mesh {
 		GLuint getVertexBuffer();
 		GLuint getVertexCount();
 		GLuint getUvBuffer();
+		GLuint getNormalBuffer();
 		
 		Texture* getTexture();
 		void setTexture(Texture* texture);
@@ -24,6 +25,7 @@ class Mesh {
 		GLuint _vertexCount;
 		GLuint _vertexBuffer;
 		GLuint _uvBuffer;
+		GLuint _normalBuffer;
 		Texture* _texture;
 };
 

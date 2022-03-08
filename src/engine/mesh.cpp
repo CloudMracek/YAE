@@ -114,6 +114,12 @@ Mesh::Mesh(const char *modelPath)
 	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 	_uvBuffer = uvbuffer;
+
+	GLuint normalBuffer;
+	glGenBuffers(1, &normalBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
+	_normalBuffer = normalBuffer;
 }
 
 Mesh::Mesh() {}
@@ -138,6 +144,11 @@ GLuint Mesh::getVertexBuffer()
 GLuint Mesh::getUvBuffer()
 {
 	return _uvBuffer;
+}
+
+GLuint Mesh::getNormalBuffer()
+{
+	return _normalBuffer;
 }
 
 Texture *Mesh::getTexture()
