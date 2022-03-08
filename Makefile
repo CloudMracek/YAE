@@ -3,7 +3,7 @@ TARGET   = YAE
 
 CC       = clang++
 # compiling flags here
-LDFLAGS = -lm -lGL -L/usr/X11R6/lib -lGLU -lglut -lGLEW -lXi -lXmu -lglfw
+LDFLAGS = -lm -lGL -L/usr/X11R6/lib -lGLEW -lXi -lglfw
 
 LINKER   = clang++
 # linking flags here
