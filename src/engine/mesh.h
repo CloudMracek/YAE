@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <iostream>
+#include <map>
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -17,6 +18,8 @@ class Mesh {
 		GLuint getVertexCount();
 		GLuint getUvBuffer();
 		GLuint getNormalBuffer();
+		GLuint getElementBuffer();
+		GLuint getElementBufferSize();
 		
 		Texture* getTexture();
 		void setTexture(Texture* texture);
@@ -26,6 +29,8 @@ class Mesh {
 		GLuint _vertexBuffer;
 		GLuint _uvBuffer;
 		GLuint _normalBuffer;
+		GLuint _elementBuffer;
+		GLuint _elementBufferSize;
 		Texture* _texture;
 };
 

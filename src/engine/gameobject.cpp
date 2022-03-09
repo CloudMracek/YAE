@@ -84,7 +84,15 @@ void GameObject::render()
 	);
 
 	// Draw the triangle !
-	glDrawArrays(GL_TRIANGLES, 0, _mesh->getVertexCount()); // 3 indices starting at 0 -> 1 triangle
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _mesh->getElementBuffer());
+
+		// Draw the triangles !
+		glDrawElements(
+			GL_TRIANGLES,      // mode
+			_mesh->getElementBufferSize(),    // count
+			GL_UNSIGNED_SHORT,   // type
+			(void*)0           // element array buffer offset
+		);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
