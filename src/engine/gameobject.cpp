@@ -83,16 +83,14 @@ void GameObject::render()
 		(void *)0 // array buffer offset
 	);
 
-	// Draw the triangle !
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _mesh->getElementBuffer());
 
-		// Draw the triangles !
-		glDrawElements(
-			GL_TRIANGLES,      // mode
-			_mesh->getElementBufferSize(),    // count
-			GL_UNSIGNED_SHORT,   // type
-			(void*)0           // element array buffer offset
-		);
+	glDrawElements(
+		GL_TRIANGLES,				   // mode
+		_mesh->getElementBufferSize(), // count
+		GL_UNSIGNED_SHORT,			   // type
+		(void *)0					   // element array buffer offset
+	);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
