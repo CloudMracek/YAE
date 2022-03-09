@@ -90,6 +90,14 @@ void gameTick() {
 }
 ```
 
+## TODO
+(In this order of priority)
+- GUI
+- Normal mapping
+- Allow light customization
+- Controller input (PS5 adaptive triggers, haptics)
+- Sound
+
 ## License
 Everything (including the rubik's cube model and texture - Thanks [Memmer](https://github.com/memmer57)) is licensed under the GPL-3.0 license. See [LICENSE](https://github.com/CloudMracek/YAE/blob/main/LICENSE) for more info.
 
