@@ -9,11 +9,11 @@ glm::mat4 getViewMatrix()
 }
 
 // Initial position : on +Z
-glm::vec3 position = glm::vec3(4, 3, 3);
+glm::vec3 position = glm::vec3(8, 5, 8);
 // Initial horizontal angle : toward -Z
-float horizontalAngle = 35.302f;
+float horizontalAngle = 1.17f;
 // Initial vertical angle : none
-float verticalAngle = -1.58f;
+float verticalAngle = -1.25f;
 // Initial Field of View
 float initialFoV = 45.0f;
 
