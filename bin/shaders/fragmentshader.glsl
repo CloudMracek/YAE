@@ -18,7 +18,7 @@ void main() {
 	float LightPower = 580.0f;
 
 	vec3 MaterialDiffuseColor = texture(textureSampler, UV).rgb;
-	vec3 MaterialAmbientColor = vec3(0.1, 0.1, 0.1) * MaterialDiffuseColor;
+	vec3 MaterialAmbientColor = vec3(0.4, 0.4, 0.4) * MaterialDiffuseColor;
 	vec3 MaterialSpecularColor = vec3(0.3, 0.3, 0.3);
 
 	float distance = length(LightPosition_worldspace - Position_worldspace);
