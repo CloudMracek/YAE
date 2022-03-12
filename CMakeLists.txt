@@ -1,22 +1,10 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required (VERSION 3.1)
+project (YAE)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-project(YAE)
-
-find_package(OpenGL REQUIRED)
-
-include_directories(${OPENGL_INCLUDE_DIRS})
-
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW lib only")
-set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
-
-add_subdirectory(glfw)
-
-if( MSVC ) 
-	SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup")
-endif()
-
-set (SRC 
-	src/main.cpp
+# The main executable
+add_executable(YAE
+  	src/main.cpp
 	src/engine/controls.cpp
 	src/engine/gameobject.cpp
 	src/engine/init.cpp
@@ -27,16 +15,36 @@ set (SRC
 	src/engine/texture.cpp
 	src/engine/windowmanager.cpp
 	src/game/gamemain.cpp
-	)
+	src/main.h
+	src/engine/controls.h
+	src/engine/gameobject.h
+	src/engine/init.h
+	src/engine/mesh.h
+	src/engine/render.h
+	src/engine/scene.h
+	src/engine/shaderloader.h
+	src/engine/texture.h
+	src/engine/windowmanager.h
+	src/game/gamemain.h
+)
 
-find_package(GLEW REQUIRED)
+set_property(TARGET YAE PROPERTY CXX_STANDARD 11)
+target_compile_options(YAE PRIVATE -Wall)
 
-add_executable( YAE WIN32 ${SRC})
-target_link_libraries(YAE ${OPENGL_LIBRARIES} glfw GLEW::GLEW)
-if (MSVC)
-	if(${CMAKE_VERSION} VERSION_LESS "3.6.0")
-		message( "\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set 'GLFW-CMake-starter' as StartUp Project in Visual Studio.\n" )
-    	else()
-        	set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT GLFW-CMake-starter )
-    	endif()
-endif()
+add_definitions(-DGLEW_STATIC)
+add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
+add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
+add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
+
+file(COPY assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+target_link_libraries(YAE
+  PRIVATE glfw
+  PRIVATE libglew_static
+  PRIVATE glm
+)
+
+target_include_directories(YAE
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src
+  PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src
+)

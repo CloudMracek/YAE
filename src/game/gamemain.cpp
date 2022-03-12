@@ -11,11 +11,11 @@ float i = 0;
 
 void gameSetup() {
 
-	mesh1 = new Mesh("models/cube.obj");
-	mesh2 = new Mesh("models/floor.obj");
+	mesh1 = new Mesh("assets/models/cube.obj");
+	mesh2 = new Mesh("assets/models/floor.obj");
 
-    texture1 = new Texture("textures/cube.bmp");
-	texture2 = new Texture("textures/uvtemplate.bmp");
+    texture1 = new Texture("assets/textures/cube.bmp");
+	texture2 = new Texture("assets/textures/uvtemplate.bmp");
 
     mesh1->setTexture(texture1);
 	mesh2->setTexture(texture2);

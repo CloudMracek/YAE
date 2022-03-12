@@ -13,7 +13,7 @@ void engineLoop(GLFWwindow *window)
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
-	GLuint programID = LoadShaders("shaders/vertexshader.glsl", "shaders/fragmentshader.glsl");
+	GLuint programID = LoadShaders("assets/shaders/vertexshader.glsl", "assets/shaders/fragmentshader.glsl");
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 	GLuint ViewMatrixID = glGetUniformLocation(programID, "V");
 	GLuint ModelMatrixID = glGetUniformLocation(programID, "M");
