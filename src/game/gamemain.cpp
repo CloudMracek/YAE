@@ -42,8 +42,8 @@ void gameCleanup() {
 	delete texture2;
 }
 
-void gameTick() {
+void gameTick(float deltaTime) {
 	object1->setPosition(glm::vec3(0.0f, sin(i)+2.5f, 0.0f));
 	object1->setRotation(glm::vec3(i, i, 0.0f));
-	i = i + 0.01f;
+	i = i + (0.5*deltaTime);
 }

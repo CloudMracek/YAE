@@ -28,10 +28,15 @@ void engineLoop(GLFWwindow *window)
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
 	int width, height;
-
+	double lastTime = 0;
 	do
 	{
-		gameTick();
+		
+		double currentTime = glfwGetTime();
+		float deltaTime = float(currentTime - lastTime);
+		lastTime = currentTime;
+
+		gameTick(deltaTime);
 		glfwGetWindowSize(window, &width, &height);
 
 		computeMatricesFromInputs(window);

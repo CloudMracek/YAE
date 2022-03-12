@@ -10,5 +10,5 @@
 #include "../engine/render.h"
 
 void gameSetup();
-void gameTick();
+void gameTick(float deltaTime);
 void gameCleanup();
