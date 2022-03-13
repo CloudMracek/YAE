@@ -15,9 +15,12 @@ This engine is **not yet finished.** There are no normal maps, there is no sound
 ## Building
 To build this you just use:
 ```
+mkdir build
+cd build
+cmake ..
 make
 ```
-duh
+Or you can use cmake-gui on Windows
 
 There are some prerequisites though. You will need:
 - GLEW
