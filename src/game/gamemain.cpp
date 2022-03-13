@@ -33,8 +33,8 @@ void gameSetup() {
 	scene1.addObject(object1);
 	scene1.addObject(object2);
 
-	font = new Font("assets/fonts/LiberationSerif-Regular.ttf", 48);
-	text = new Text("Cus", font, glm::vec2(1.0f, 48.0f), glm::vec3(1.0f), 0.5f);
+	font = new Font("assets/fonts/arial.ttf", 48);
+	text = new Text("Cus", font, glm::vec2(1.0f, 48.0f), glm::vec3(1.0f), 0.25f);
 
 	loadScene(scene1);	
 }
@@ -50,7 +50,13 @@ void gameCleanup() {
 	delete font;
 }
 
-void gameTick(float deltaTime) {
+void gameTick(float deltaTime, GLFWwindow* window) {
+	
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+
+	text->setPosition(glm::vec2(1.0f, (height/2)+55.0f));
+
 	if (fpsSlower == 10) {
 		text->setText(std::to_string((int)(1 / deltaTime)) + " FPS");
 		fpsSlower = 0;

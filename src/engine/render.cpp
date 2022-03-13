@@ -37,7 +37,7 @@ void engineLoop(GLFWwindow *window)
 		float deltaTime = float(currentTime - lastTime);
 		lastTime = currentTime;
 
-		gameTick(deltaTime);
+		gameTick(deltaTime, window);
 		glfwGetWindowSize(window, &width, &height);
 
 		computeMatricesFromInputs(window);

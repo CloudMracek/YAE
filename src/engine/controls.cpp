@@ -24,6 +24,9 @@ int width, height;
 
 void computeMatricesFromInputs(GLFWwindow *window)
 {
+
+    int focused = glfwGetWindowAttrib(window, GLFW_FOCUSED);
+
     glfwGetWindowSize(window, &width, &height);
     static double lastTime = glfwGetTime();
     double currentTime = glfwGetTime();
@@ -33,8 +36,10 @@ void computeMatricesFromInputs(GLFWwindow *window)
     glfwGetCursorPos(window, &xpos, &ypos);
     glfwSetCursorPos(window, width / 2, height / 2);
 
-    horizontalAngle += mouseSpeed * float(width / 2 - xpos);
-    verticalAngle += mouseSpeed * float(height / 2 - ypos);
+    if (focused == 1) {
+        horizontalAngle += mouseSpeed * float(width / 2 - xpos);
+        verticalAngle += mouseSpeed * float(height / 2 - ypos);
+    }
 
     if(verticalAngle > 1.5) {verticalAngle = 1.5;}
     if(verticalAngle < -1.5) {verticalAngle = -1.5;}
@@ -51,29 +56,31 @@ void computeMatricesFromInputs(GLFWwindow *window)
 
     glm::vec3 up = glm::cross(right, direction);
 
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-    {
-        position += direction * deltaTime * speed;
-    }
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-    {
-        position -= direction * deltaTime * speed;
-    }
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-    {
-        position += right * deltaTime * speed;
-    }
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-    {
-        position -= right * deltaTime * speed;
-    }
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-    {
-        position += up * deltaTime * speed;
-    }
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-    {
-        position -= up * deltaTime * speed;
+    if (focused == 1) {
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        {
+            position += direction * deltaTime * speed;
+        }
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        {
+            position -= direction * deltaTime * speed;
+        }
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        {
+            position += right * deltaTime * speed;
+        }
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        {
+            position -= right * deltaTime * speed;
+        }
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        {
+            position += up * deltaTime * speed;
+        }
+        if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+        {
+            position -= up * deltaTime * speed;
+        }
     }
 
     ViewMatrix = glm::lookAt(

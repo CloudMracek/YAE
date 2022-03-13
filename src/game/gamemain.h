@@ -11,5 +11,5 @@
 #include "../engine/render.h"
 
 void gameSetup();
-void gameTick(float deltaTime);
+void gameTick(float deltaTime, GLFWwindow* window);
 void gameCleanup();
