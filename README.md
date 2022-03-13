@@ -10,24 +10,20 @@ This engine is **not yet finished.** There are no normal maps, there is no sound
 - Manage the position, scale and rotation on those objects
 - Draw those objects (duh)
 - Does basic shading with one static unmovable light
+- Draw basic 2D GUI text
 - Not cause memory leaks (hopefully)
 
 ## Building
 To build this you just use:
 ```
+git clone https://github.com/CloudMracek/YAE/ --recursive
+cd YAE
 mkdir build
 cd build
 cmake ..
 make
 ```
 Or you can use cmake-gui on Windows
-
-There are some prerequisites though. You will need:
-- GLEW
-- GLFW
-- GLM
-
-There might be more but these are all I can think of now.
 
 ## Usage
 You can find two folders in the source code:
@@ -47,8 +43,11 @@ GLuint vertexBuffer;
 Mesh* mesh1;
 GameObject* object;
 Texture* texture;
+Font* font;
+Text* text;
 
 float i = 0;
+int fpsSlower = 0;
 
 void gameSetup() {
   
@@ -72,6 +71,11 @@ void gameSetup() {
   
   // Add our game object to the scene
   scene1.addObject(object);
+  
+  // Load a font from file
+  font = new Font("assets/fonts/LiberationSerif-Regular.ttf", 48);
+  // Create a GUI text on the screen
+  text = new Text("Cus", font, glm::vec2(1.0f, 48.0f), glm::vec3(1.0f), 0.5f);
 
   // Load our scene
   loadScene(scene1);
@@ -82,10 +86,19 @@ void gameCleanup() {
   delete object;
   delete mesh1;
   delete texture;
+  delete text;
+  delete font;
 }
 
 // Called every frame
 void gameTick() {
+
+  // Write the current FPS on our screen (FPS slower is there to make it slower so it's readable)
+  if (fpsSlower == 10) {
+    text->setText(std::to_string((int)(1 / deltaTime)) + " FPS");
+    fpsSlower = 0;
+  }
+  
   // Set position / rotation / scale (as you wish)
   object->setPosition(glm::vec3(0.0f, sin(i), 0.0f));
   object->setRotation(glm::vec3(i, i, 0.0f));
@@ -95,7 +108,7 @@ void gameTick() {
 
 ## TODO
 (In this order of priority)
-- GUI
+- ~~GUI~~ - Basic 2D text done
 - Normal mapping
 - Allow light customization
 - Controller input (PS5 adaptive triggers, haptics)
