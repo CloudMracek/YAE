@@ -187,7 +187,7 @@ void renderText(Font* font, std::string text, glm::vec2 position, glm::vec3 colo
 
 
 void renderGUI() {
-	for each (Text* text in activeText)
+	for (Text* text : activeText)
 	{
 		if (text->getVisible()) {
 			renderText(text->getFont(), text->getText(), text->getPosition(), text->getColor(), text->getScale());
