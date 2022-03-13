@@ -14,6 +14,7 @@ add_executable(YAE
 	src/engine/shaderloader.cpp
 	src/engine/texture.cpp
 	src/engine/windowmanager.cpp
+	src/engine/gui.cpp
 	src/game/gamemain.cpp
 	src/main.h
 	src/engine/controls.h
@@ -25,6 +26,7 @@ add_executable(YAE
 	src/engine/shaderloader.h
 	src/engine/texture.h
 	src/engine/windowmanager.h
+	src/engine/gui.h
 	src/game/gamemain.h
 )
 
@@ -35,6 +37,7 @@ add_definitions(-DGLEW_STATIC)
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
 add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
+add_subdirectory(lib/freetype EXCLUDE_FROM_ALL)
 
 file(COPY assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -42,6 +45,7 @@ target_link_libraries(YAE
   PRIVATE glfw
   PRIVATE libglew_static
   PRIVATE glm
+  PRIVATE freetype
 )
 
 target_include_directories(YAE

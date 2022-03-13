@@ -29,9 +29,10 @@ void engineLoop(GLFWwindow *window)
 
 	int width, height;
 	double lastTime = 0;
+
 	do
 	{
-		
+		glBindVertexArray(VertexArrayID);
 		double currentTime = glfwGetTime();
 		float deltaTime = float(currentTime - lastTime);
 		lastTime = currentTime;
@@ -71,7 +72,7 @@ void engineLoop(GLFWwindow *window)
 			glUniform1i(TextureID, 0);
 			object->render();
 		}
-
+		renderGUI();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 

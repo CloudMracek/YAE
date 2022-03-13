@@ -6,8 +6,11 @@ GameObject* object1;
 GameObject* object2;
 Texture* texture1;
 Texture* texture2;
+Font* font;
+Text* text;
 
 float i = 0;
+float fpsSlower = 0;
 
 void gameSetup() {
 
@@ -30,6 +33,9 @@ void gameSetup() {
 	scene1.addObject(object1);
 	scene1.addObject(object2);
 
+	font = new Font("assets/fonts/LiberationSerif-Regular.ttf", 48);
+	text = new Text("Cus", font, glm::vec2(1.0f, 48.0f), glm::vec3(1.0f), 0.5f);
+
 	loadScene(scene1);	
 }
 
@@ -40,10 +46,17 @@ void gameCleanup() {
 	delete mesh2;
 	delete texture1;
 	delete texture2;
+	delete text;
+	delete font;
 }
 
 void gameTick(float deltaTime) {
+	if (fpsSlower == 10) {
+		text->setText(std::to_string((int)(1 / deltaTime)) + " FPS");
+		fpsSlower = 0;
+	}
 	object1->setPosition(glm::vec3(0.0f, sin(i)+2.5f, 0.0f));
 	object1->setRotation(glm::vec3(i, i, 0.0f));
 	i = i + (0.5*deltaTime);
+	fpsSlower++;
 }

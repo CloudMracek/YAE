@@ -8,6 +8,7 @@
 #include "scene.h"
 #include "shaderloader.h"
 #include "controls.h"
+#include "gui.h"
 
 extern Scene activeScene;
 
