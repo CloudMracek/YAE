@@ -14,6 +14,8 @@ float fpsSlower = 0;
 
 void gameSetup() {
 
+	glfwSwapInterval(0);
+
 	mesh1 = new Mesh("assets/models/cube.obj");
 	mesh2 = new Mesh("assets/models/floor.obj");
 
