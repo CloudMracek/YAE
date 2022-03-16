@@ -4,8 +4,8 @@ Mesh* mesh1;
 Mesh* mesh2;
 GameObject* object1;
 GameObject* object2;
-Texture* texture1;
-Texture* texture2;
+Material* texture1;
+Material* texture2;
 Font* font;
 Text* text;
 
@@ -17,11 +17,11 @@ void gameSetup() {
 	mesh1 = new Mesh("assets/models/cube.obj");
 	mesh2 = new Mesh("assets/models/floor.obj");
 
-    texture1 = new Texture("assets/textures/cube.bmp");
-	texture2 = new Texture("assets/textures/uvtemplate.bmp");
+    texture1 = new Material("assets/textures/cube.bmp", "assets/textures/normal.bmp");
+	texture2 = new Material("assets/textures/uvtemplate.bmp");
 
-    mesh1->setTexture(texture1);
-	mesh2->setTexture(texture2);
+    mesh1->setMaterial(texture1);
+	mesh2->setMaterial(texture2);
 
 	object1 =  new GameObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	object1->setMesh(mesh1);

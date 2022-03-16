@@ -83,16 +83,43 @@ void GameObject::render()
 		(void *)0 // array buffer offset
 	);
 
+	glBindBuffer(GL_ARRAY_BUFFER, _mesh->getTangentBuffer());
+	glVertexAttribPointer(
+		3,                                // attribute
+		3,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
+	// 5th attribute buffer : bitangents
+	glEnableVertexAttribArray(4);
+	glBindBuffer(GL_ARRAY_BUFFER, _mesh->getBitangentBuffer());
+	glVertexAttribPointer(
+		4,                                // attribute
+		3,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
+	// Index buffer
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _mesh->getElementBuffer());
 
+	// Draw the triangles !
 	glDrawElements(
-		GL_TRIANGLES,				   // mode
-		_mesh->getElementBufferSize(), // count
-		GL_UNSIGNED_SHORT,			   // type
-		(void *)0					   // element array buffer offset
+		GL_TRIANGLES,      // mode
+		_mesh->getElementBufferSize(),    // count
+		GL_UNSIGNED_SHORT, // type
+		(void*)0           // element array buffer offset
 	);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+	glDisableVertexAttribArray(4);
+
 }

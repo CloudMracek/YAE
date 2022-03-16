@@ -176,7 +176,7 @@ void renderText(Font* font, std::string text, glm::vec2 position, glm::vec3 colo
 		};
 
 		glNamedBufferSubData(buffer, 0, sizeof(GLfloat) * 6 * 4, vertices);
-		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+		glBindTexture(GL_TEXTURE_2D, ch.MaterialID);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		x += (ch.Advance >> 6) * scale;
 

@@ -7,7 +7,7 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
-#include "texture.h"
+#include "material.h"
 
 class Mesh {
 	public:
@@ -18,19 +18,23 @@ class Mesh {
 		GLuint getVertexCount();
 		GLuint getUvBuffer();
 		GLuint getNormalBuffer();
+		GLuint getTangentBuffer();
+		GLuint getBitangentBuffer();
 		GLuint getElementBuffer();
 		GLuint getElementBufferSize();
 		
-		Texture* getTexture();
-		void setTexture(Texture* texture);
+		Material* getMaterial();
+		void setMaterial(Material* material);
 		
 	private:
 		GLuint _vertexCount;
 		GLuint _vertexBuffer;
 		GLuint _uvBuffer;
 		GLuint _normalBuffer;
+		GLuint _tangentBuffer;
+		GLuint _bitangentBuffer;
 		GLuint _elementBuffer;
 		GLuint _elementBufferSize;
-		Texture* _texture;
+		Material* _material;
 };
 

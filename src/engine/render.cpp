@@ -14,10 +14,16 @@ void engineLoop(GLFWwindow *window)
 	glBindVertexArray(VertexArrayID);
 
 	GLuint programID = LoadShaders("assets/shaders/vertexshader.glsl", "assets/shaders/fragmentshader.glsl");
+
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 	GLuint ViewMatrixID = glGetUniformLocation(programID, "V");
 	GLuint ModelMatrixID = glGetUniformLocation(programID, "M");
-	GLuint TextureID = glGetUniformLocation(programID, "textureSampler");
+	GLuint ModelView3x3MatrixID = glGetUniformLocation(programID, "MV3x3");
+
+	GLuint DiffuseTextureID = glGetUniformLocation(programID, "DiffuseTextureSampler");
+	GLuint NormalTextureID = glGetUniformLocation(programID, "NormalTextureSampler");
+	GLuint UsesNormalMap = glGetUniformLocation(programID, "UsesNormalMap");
+
 	GLuint LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
 
 	glEnable(GL_DEPTH_TEST);
@@ -29,6 +35,7 @@ void engineLoop(GLFWwindow *window)
 
 	int width, height;
 	double lastTime = 0;
+
 
 	do
 	{
@@ -62,14 +69,34 @@ void engineLoop(GLFWwindow *window)
 
 			glm::mat4 scale = glm::scale(glm::mat4(1.0f), object->getScale());
 			glm::mat4 Model = translate * scale * rotate;
+			glm::mat3 ModelView3x3Matrix = glm::mat3(Model);
 			glm::mat4 MVP = Projection * View * Model;
 
 			glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 			glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &Model[0][0]);
+			glUniformMatrix3fv(ModelView3x3MatrixID, 1, GL_FALSE, &ModelView3x3Matrix[0][0]);
 
-			GLuint texture = object->getMesh()->getTexture()->getTextureID();
-			glBindTexture(GL_TEXTURE_2D, texture);
-			glUniform1i(TextureID, 0);
+			GLuint DiffuseTexture = object->getMesh()->getMaterial()->getDiffuseTextureID();
+			GLuint NormalTexture = object->getMesh()->getMaterial()->getNormalTextureID();
+
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, DiffuseTexture);
+			// Set our "DiffuseTextureSampler" sampler to use Texture Unit 0
+			glUniform1i(DiffuseTextureID, 0);
+
+
+			if (NormalTexture != 9999) {
+				glActiveTexture(GL_TEXTURE1);
+				glBindTexture(GL_TEXTURE_2D, NormalTexture);
+				// Set our "NormalTextureSampler" sampler to use Texture Unit 1
+				glUniform1i(UsesNormalMap, 1);
+			}
+			else {
+				glUniform1i(UsesNormalMap, 0);
+			}
+			glUniform1i(NormalTextureID, 1);
+
+
 			object->render();
 		}
 		renderGUI();

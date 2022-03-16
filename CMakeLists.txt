@@ -12,7 +12,7 @@ add_executable(YAE
 	src/engine/render.cpp
 	src/engine/scene.cpp
 	src/engine/shaderloader.cpp
-	src/engine/texture.cpp
+	src/engine/material.cpp
 	src/engine/windowmanager.cpp
 	src/engine/gui.cpp
 	src/game/gamemain.cpp
@@ -24,7 +24,7 @@ add_executable(YAE
 	src/engine/render.h
 	src/engine/scene.h
 	src/engine/shaderloader.h
-	src/engine/texture.h
+	src/engine/material.h
 	src/engine/windowmanager.h
 	src/engine/gui.h
 	src/game/gamemain.h
