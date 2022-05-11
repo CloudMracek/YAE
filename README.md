@@ -1,3 +1,5 @@
+[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/CloudMracek/YAE.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CloudMracek/YAE/context:cpp)
+
 ![Logo](https://github.com/CloudMracek/YAE/blob/main/logo-white.png?raw=true)
 
 ## The basics
